@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AirPods Pro (2nd Gen) | ElectroCompare</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <a href="index.html" class="nav-left">
+      <div class="nav-logo"><i class="fa-solid fa-bag-shopping"></i></div>
+      <span class="Elec">ElectroCompare</span>
+    </a>
+    <div class="nav-center">
+      <input type="text" placeholder="Search products">
+      <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+    <div class="nav-right" id="userBox">
+  <a href="login.html" class="login-btn" id="loginBtn">Login</a>
+</div>
+
+  </nav>
+</header>
+
+<main class="product-page">
+
+  <section class="product-image-section">
+    <img src="images/airpods-pro.png">
+    <div class="image-title">AirPods Pro (2nd Gen)</div>
+  </section>
+
+  <section class="product-info-section">
+
+    <h1>Apple AirPods Pro (2nd Gen)</h1>
+    
+    <div class="price">₹24,999</div>
+    
+
+    <div class="info-block">
+      <h2>Specifications</h2>
+      <ul>
+        <li><span>Type</span><span>True Wireless Earbuds</span></li>
+        <li><span>Noise Cancellation</span><span>Active ANC</span></li>
+        <li><span>Chip</span><span>Apple H2</span></li>
+        <li><span>Battery</span><span>30 Hours (with case)</span></li>
+        <li><span>Water Resistance</span><span>IPX4</span></li>
+      </ul>
+    </div>
+
+    <div class="info-block">
+      <h2>Available Stores</h2>
+      <div class="store">Apple Store ₹24,999</div>
+      <div class="store">Croma ₹25,500</div>
+      <div class="store">Amazon ₹24,490</div>
+    </div>
+    <div class="user-rating">
+<h3>Rate this product</h3>
+
+<div class="star-rating" id="starRating">
+  <i class="fa-regular fa-star" data-value="1"></i>
+  <i class="fa-regular fa-star" data-value="2"></i>
+  <i class="fa-regular fa-star" data-value="3"></i>
+  <i class="fa-regular fa-star" data-value="4"></i>
+  <i class="fa-regular fa-star" data-value="5"></i>
+</div>
+
+<textarea id="reviewText" placeholder="Write your review (optional)"></textarea>
+
+<button class="submit-rating-btn" onclick="submitRating('airpodspro2ndgen')">
+  Submit Rating
+</button>
+
+
+<p id="ratingMessage"></p>
+</div>
+  </section>
+</main>
+
+<footer class="footer">
+  © 2026 ElectroCompare Vijayawada. All rights reserved.
+</footer>
+
+<script>
+/* ================= USER SESSION ================= */
+const user =
+  JSON.parse(localStorage.getItem("loggedInUser")) ||
+  JSON.parse(sessionStorage.getItem("loggedInUser"));
+
+const userBox = document.getElementById("userBox");
+
+if (user && userBox) {
+  userBox.innerHTML = `
+    <span class="user-name">Hi, ${user.name}</span>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  `;
+}
+
+function logout() {
+  localStorage.removeItem("loggedInUser");
+  sessionStorage.removeItem("loggedInUser");
+  window.location.href = "login.html";
+}
+
+/* ================= STAR RATING ================= */
+const stars = document.querySelectorAll("#starRating i");
+let selectedRating = 0;
+
+// ⭐ click stars
+stars.forEach(star => {
+  star.addEventListener("click", () => {
+    selectedRating = Number(star.dataset.value);
+
+    stars.forEach(s => {
+      s.classList.toggle("fa-solid", s.dataset.value <= selectedRating);
+      s.classList.toggle("fa-regular", s.dataset.value > selectedRating);
+    });
+  });
+});
+
+/* ================= SUBMIT RATING ================= */
+function submitRating(productId) {
+  if (selectedRating === 0) {
+    alert("Please select a rating");
+    return;
+  }
+
+  const key = "rating_" + productId;
+  const ratings = JSON.parse(localStorage.getItem(key)) || [];
+
+  ratings.push(selectedRating);
+  localStorage.setItem(key, JSON.stringify(ratings));
+
+  document.getElementById("ratingMessage").innerText =
+    "Thank you for rating ⭐";
+
+  // 🔄 reset stars
+  selectedRating = 0;
+  stars.forEach(s => {
+    s.classList.remove("fa-solid");
+    s.classList.add("fa-regular");
+  });
+}
+</script>
+
+
+</body>
+</html>

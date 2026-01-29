@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mobiles | ElectroCompare</title>
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<header>
+  <nav class="navbar">
+
+    <!-- LOGO → HOME PAGE -->
+    <a href="index.html" class="nav-left" style="text-decoration:none;">
+      <div class="nav-logo">
+        <i class="fa-solid fa-bag-shopping"></i>
+      </div>
+      <h2 class="Elec">ElectroCompare</h2>
+    </a>
+
+    <!-- SEARCH -->
+    <div class="nav-center search-wrapper">
+  <input
+    type="text"
+    id="search-input"
+    placeholder="Search for products, brands and more"
+    autocomplete="off"
+  />
+  <button class="search-btn" onclick="searchFromHome()">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+  <div id="search-suggestions" class="suggestions-box"></div>
+</div>
+
+
+    <!-- LOGIN -->
+   <div class="nav-right" id="userBox">
+  <a href="login.html" class="login-btn" id="loginBtn">Login</a>
+</div>
+
+
+  </nav>
+</header>
+
+<!-- ================= PRODUCTS PAGE ================= -->
+<section class="products-layout">
+
+  <!-- ===== LEFT FILTER PANEL ===== -->
+  <aside class="filter-panel">
+
+    
+    <h3>Category</h3>
+<label>
+  <input type="checkbox" class="category-filter" value="mobile" checked> Mobile
+</label>
+<label>
+  <input type="checkbox" class="category-filter" value="laptop" checked> Laptop
+</label>
+<label>
+  <input type="checkbox" class="category-filter" value="tv" checked> TV
+</label>
+<label>
+  <input type="checkbox" class="category-filter" value="audio" checked> Audio
+</label>
+<label>
+  <input type="checkbox" class="category-filter" value="appliances" checked> Appliances
+</label>
+
+    <hr>
+
+    <h3>Price Range</h3>
+
+<div class="price-filter">
+  <div class="price-values">
+    <span id="min-price">₹0</span>
+    <span id="max-price">₹2,00,000</span>
+  </div>
+
+  <input
+    type="range"
+    id="price-range"
+    min="0"
+    max="200000"
+    step="1000"
+    value="200000"
+  />
+
+  <div class="price-selected">
+    Up to <b id="selected-price">₹2,00,000</b>
+  </div>
+</div>
+
+
+    <hr>
+<hr>
+
+<h3>Rating</h3>
+<select id="rating-filter" class="filter-select">
+  <option value="0">All Ratings</option>
+  <option value="4">4★ & above</option>
+  <option value="4.5">4.5★ & above</option>
+</select>
+
+<hr>
+
+<h3>Sort By</h3>
+<select id="sort-price" class="filter-select">
+  <option value="">Default</option>
+  <option value="low-high">Price: Low → High</option>
+  <option value="high-low">Price: High → Low</option>
+</select>
+
+<h3>Location</h3>
+
+<!-- GPS BUTTON -->
+<div class="gps-box">
+  <button class="gps-btn" onclick="getUserLocation()">
+    <i class="fa-solid fa-location-crosshairs"></i>
+    Use my location
+  </button>
+  <p id="detected-location"></p>
+</div>
+
+<div class="city-filter-box">
+  <i class="fa-solid fa-location-dot"></i>
+  <input
+    type="text"
+    id="city-filter"
+    placeholder="Filter by city (e.g. Vijayawada)"
+  >
+
+</div>
+<h4 class="radius-title">Search Radius</h4>
+
+<div class="radius-filter">
+  <input
+    type="range"
+    id="radius-range"
+    min="1"
+    max="50"
+    value="10"
+    step="1"
+  />
+  <div class="radius-value">
+    Within <b><span id="radius-value">10</span> km</b>
+  </div>
+</div>
+
+
+
+
+    <button class="clear-filters-btn" onclick="clearAllFilters()">
+  <i class="fa-solid fa-broom"></i>
+  Clear all filters
+</button>
+
+
+  </aside>
+
+  <!-- ===== RIGHT PRODUCTS ===== -->
+  <main class="products-content">
+<p id="no-products" class="no-products">
+  No products found 😔
+</p>
+
+    <div class="products-grid">
+
+      <!-- PRODUCT 1 -->
+      <div class="product-card"
+      data-lat="16.5062"
+     data-lng="80.6480" 
+      data-name="iPhone 15 Pro" data-product-id="iphone15pro" data-category="mobile" data-price="134900" data-city="Vijayawada" data-rating="0">
+        <div class="card-top">
+          <span class="badge">Mobile</span>
+          <span class="location">
+            <i class="fa-solid fa-location-dot"></i> Vijayawada
+          </span>
+        </div>
+
+        <img src="images/iphone-15-pro.png" alt="iPhone 15 Pro" class="product-img">
+
+        <h4>iPhone 15 Pro</h4>
+        
+        <p class="price">₹1,34,900</p>
+<div class="rating">
+  <span class="stars" data-stars="0">☆☆☆☆☆</span>
+  <span class="rating-value">(0.0)</span>
+</div>
+
+
+        <a href="iphone15pro.html">
+          <button>View Details</button>
+        </a>
+      </div>
+
+      <!-- PRODUCT 2 -->
+      <div class="product-card active" 
+      data-lat="16.5062"
+     data-lng="80.6480" data-name="samsung galaxy s24 ultra" data-product-id="samsunggalaxys24ultra" data-category="mobile" data-price="129999" data-city="vijayawada" data-rating="0">
+        <div class="card-top">
+          <span class="badge">Mobile</span>
+          <span class="location">
+            <i class="fa-solid fa-location-dot"></i> Vijayawada
+          </span>
+        </div>
+
+        <img src="images/samsung-s24-ultra.png" alt="samsung galaxy s24 ultra" class="product-img">
+
+        <h4>Samsung Galaxy S24 Ultra</h4>
+        
+        <p class="price">₹1,29,999</p>
+<div class="rating">
+  <span class="stars" data-stars="0">☆☆☆☆☆</span>
+  <span class="rating-value">(0.0)</span>
+</div>
+
+
+        <a href="s24ultra.html">
+          <button class="primary">View Details</button>
+        </a>
+      </div>
+
+      <!-- PRODUCT 3 -->
+      <div class="product-card"
+      data-lat="16.5062"
+     data-lng="80.6480" data-name="oneplus 12" data-category="mobile" data-product-id="oneplus12" data-price="64999" data-city="vijayawada" data-rating="0">
+        <div class="card-top">
+          <span class="badge">Mobile</span>
+          <span class="location">
+            <i class="fa-solid fa-location-dot"></i> Vijayawada
+          </span>
+        </div>
+
+        <img src="images/oneplus-12.png" alt="OnePlus 12" class="product-img">
+
+        <h4>OnePlus 12</h4>
+        
+        <p class="price">₹64,999</p>
+<div class="rating">
+  <span class="stars" data-stars="0">☆☆☆☆☆</span>
+  <span class="rating-value">(0.0)</span>
+</div>
+
+
+        <a href="oneplus12.html">
+          <button>View Details</button>
+        </a>
+      </div>
+
+      <!-- PRODUCT 4 -->
+      <div class="product-card"
+      data-lat="16.5062"
+     data-lng="80.6480" data-name="google pixel 8 pro" data-product-id="pixel8pro" data-category="mobile" data-price="106999" data-city="vijayawada" data-rating="0">
+        <div class="card-top">
+          <span class="badge">Mobile</span>
+          <span class="location">
+            <i class="fa-solid fa-location-dot"></i> Vijayawada
+          </span>
+        </div>
+
+        <img src="images/pixel-8-pro.png" alt="Google Pixel 8 Pro" class="product-img">
+
+        <h4>Pixel 8 Pro</h4>
+        
+        <p class="price">₹1,06,999</p>
+<div class="rating">
+  <span class="stars" data-stars="0">☆☆☆☆☆</span>
+  <span class="rating-value">(0.0)</span>
+</div>
+
+
+        <a href="pixel8pro.html">
+          <button>View Details</button>
+        </a>
+      </div>
+      <!-- LAPTOP 1 -->
+<!-- LAPTOP 1 : FIXED -->
+<div class="product-card"
+     data-name="macbook air m2"
+     data-product-id="macbookairm2"
+     data-category="laptop"
+     data-price="114900"
+     data-city="vijayawada"
+     data-lat="16.5062"
+     data-lng="80.6480"
+     data-rating="0">
+
+  <div class="card-top">
+    <span class="badge">Laptop</span>
+    <span class="location">
+      <i class="fa-solid fa-location-dot"></i> Vijayawada
+    </span>
+  </div>
+
+  <img src="images/macbook-air-m2.png" alt="MacBook Air M2" class="product-img">
+
+  <h4>MacBook Air M2</h4>
+  
+  <p class="price">₹1,14,900</p>
+<div class="rating">
+  <span class="stars" data-stars="0">☆☆☆☆☆</span>
+  <span class="rating-value">(0.0)</span>
+</div>
+
+
+  <a href="macbook-air-m2.html">
+    <button>View Details</button>
+  </a>
+</div>
+
+
+<!-- LAPTOP 2 -->
+<div class="product-card" data-category="laptop"
+     data-name="dell xps 13"
+     data-product-id="dellxps13"
+     data-category="laptop"
+     data-price="99999"
+     data-city="vijayawada"
+     data-lat="16.5062"
+     data-lng="80.6480"
+     data-rating="0">
+
+  <div class="card-top">
+    <span class="badge">Laptop</span>
+    <span class="location">
+      <i class="fa-solid fa-location-dot"></i> Vijayawada
+    </span>
+  </div>
+
+  <img src="images/dell-xps-13.png" alt="Dell XPS 13" class="product-img">
+
+  <h4>Dell XPS 13</h4>
+
+  <p class="price">₹99,999</p>
+<div class="rating">
+  <span class="stars" data-stars="0">☆☆☆☆☆</span>
+  <span class="rating-value">(0.0)</span>
+</div>
+
+
+  <a href="dell-xps-13.html">
+    <button>View Details</button>
+  </a>
+</div>
+<!-- LAPTOP 3 -->
+<div class="product-card" data-category="laptop"
+     data-name="hp spectre x360"
+     data-product-id="hpspectrex360"
+     data-category="laptop"
+     data-price="139999"
+     data-city="vijayawada"
+     data-lat="16.5062"
+     data-lng="80.6480"
+     data-rating="0">
+
+  <div class="card-top">
+    <span class="badge">Laptop</span>
+    <span class="location">
+      <i class="fa-solid fa-location-dot"></i> Vijayawada
+    </span>
+  </div>
+
+  <img src="images/hp-spectre-x360.png"
+       alt="HP Spectre x360"
+       class="product-img">
+
+  <h4>HP Spectre x360</h4>
+ 
+  <p class="price">₹1,39,999</p>
+<div class="rating">
+  <span class="stars" data-stars="0">☆☆☆☆☆</span>
+  <span class="rating-value">(0.0)</span>
+</div>
+
+
+  <a href="hpspectrex360.html">
+    <button>View Details</button>
+  </a>
+</div>
+<!-- LAPTOP 4 -->
+<div class="product-card" data-category="laptop"
+     data-name="lenovo thinkpad x1 carbon"
+     data-product-id="thinkpadx1"
+     data-category="laptop"
+     data-price="149999"
+     data-city="vijayawada"
+     data-lat="16.5062"
+     data-lng="80.6480"
+     data-rating="0">
+
+  <div class="card-top">
+    <span class="badge">Laptop</span>
+    <span class="location">
+      <i class="fa-solid fa-location-dot"></i> Vijayawada
+    </span>
+  </div>
+
+  <img src="images/lenovo-thinkpad-x1.png"
+       alt="Lenovo ThinkPad X1 Carbon"
+       class="product-img">
+
+  <h4>Lenovo ThinkPad X1 Carbon</h4>
+
+  <p class="price">₹1,49,999</p>
+<div class="rating">
+  <span class="stars" data-stars="0">☆☆☆☆☆</span>
+  <span class="rating-value">(0.0)</span>
+</div>
+
+
+  <a href="thinkpadx1.html">
+    <button>View Details</button>
+  </a>
+</div>
+  <!-- TV 1 -->
+<div class="product-card"
+     data-name="samsung qled 55 inch"
+     data-category="tv"
+     data-product-id="samsungqled55"
+     data-price="89999"
+     data-rating="0"
+     data-city="vijayawada"
+     data-lat="16.5062"
+     data-lng="80.6480">
+
+  <div class="card-top">
+    <span class="badge">TV</span>
+    <span class="location">
+      <i class="fa-solid fa-location-dot"></i> Vijayawada
+    </span>
+  </div>
+
+  <img src="images/samsung-qled-55.png" class="product-img">
+
+  <h4>Samsung QLED 55″</h4>
+
+  <p class="price">₹89,999</p>
+<div class="rating">
+  <span class="stars" data-stars="0">☆☆☆☆☆</span>
+  <span class="rating-value">(0.0)</span>
+</div>
+
+
+  <a href="samsung-qled-55.html">
+    <button>View Details</button>
+  </a>
+</div>
+
+<!-- TV 2 -->
+<div class="product-card"
+     data-name="lg oled c3 55 inch"
+     data-product-id="lgoledc355"
+     data-category="tv"
+     data-price="124999"
+     data-rating="0"
+     data-lat="16.5062"
+     data-lng="80.6480"
+     data-city="vijayawada">
+
+  <div class="card-top">
+    <span class="badge">TV</span>
+    <span class="location">
+      <i class="fa-solid fa-location-dot"></i> Vijayawada
+    </span>
+  </div>
+
+  <img src="images/lg-oled-c3.png" class="product-img">
+
+  <h4>LG OLED C3 55″</h4>
+
+  <p class="price">₹1,24,999</p>
+<div class="rating">
+  <span class="stars" data-stars="0">☆☆☆☆☆</span>
+  <span class="rating-value">(0.0)</span>
+</div>
+
+
+  <a href="lg-oled-c3.html">
+    <button>View Details</button>
+  </a>
+</div>
+
+<!-- TV 3 -->
+<div class="product-card"
+     data-name="sony bravia xr 65 inch"
+     data-product-id="sonybraviaxr65"
+     data-category="tv"
+     data-lat="16.5062"
+     data-lng="80.6480"
+     data-price="159999"
+     data-rating="0"
+     data-city="vijayawada">
+
+  <div class="card-top">
+    <span class="badge">TV</span>
+    <span class="location">
+      <i class="fa-solid fa-location-dot"></i> Vijayawada
+    </span>
+  </div>
+
+  <img src="images/sony-bravia-xr.png" class="product-img">
+
+  <h4>Sony Bravia XR 65″</h4>
+
+  <p class="price">₹1,59,999</p>
+<div class="rating">
+  <span class="stars" data-stars="0">☆☆☆☆☆</span>
+  <span class="rating-value">(0.0)</span>
+</div>
+
+
+  <a href="sony-bravia-xr.html">
+    <button>View Details</button>
+  </a>
+</div>
+
+<!-- TV 4 -->
+<div class="product-card"
+     data-name="oneplus y1s pro 55 inch"
+     data-product-id="oneplusy1spro55"
+     data-category="tv"
+     data-lat="16.5062"
+     data-lng="80.6480"
+     data-price="49999"
+     data-rating="0"
+     data-city="vijayawada">
+
+  <div class="card-top">
+    <span class="badge">TV</span>
+    <span class="location">
+      <i class="fa-solid fa-location-dot"></i> Vijayawada
+    </span>
+  </div>
+
+  <img src="images/oneplus-y1s-pro.png" class="product-img">
+
+  <h4>OnePlus Y1S Pro 55″</h4>
+
+  <p class="price">₹49,999</p>
+<div class="rating">
+  <span class="stars" data-stars="0">☆☆☆☆☆</span>
+  <span class="rating-value">(0.0)</span>
+</div>
+
+
+  <a href="oneplus-y1s-pro.html">
+    <button>View Details</button>
+  </a>
+</div>
+<div class="product-card"
+     data-name="sony wh-1000xm5"
+     data-product-id="sonywh1000xm5"
+     data-category="audio"
+     data-price="34999"
+     data-lat="16.5062"
+     data-lng="80.6480"
+     data-city="vijayawada"
+     data-rating="0">
+
+  <div class="card-top">
+    <span class="badge">Audio</span>
+    <span class="location">
+      <i class="fa-solid fa-location-dot"></i> Vijayawada
+    </span>
+  </div>
+
+  <img src="images/sony-xm5.png" class="product-img">
+
+  <h4>Sony WH-1000XM5</h4>
+  
+  <p class="price">₹34,999</p>
+<div class="rating">
+  <span class="stars" data-stars="0">☆☆☆☆☆</span>
+  <span class="rating-value">(0.0)</span>
+</div>
+
+
+  <a href="sony-xm5.html">
+    <button>View Details</button>
+  </a>
+</div>
+<div class="product-card"
+     data-name="airpods pro 2nd gen"
+     data-product-id="airpodspro2ndgen"
+     data-category="audio"
+     data-price="24999"
+     data-lat="16.5062"
+     data-lng="80.6480"
+     data-city="vijayawada"
+     data-rating="0">
+
+  <div class="card-top">
+    <span class="badge">Audio</span>
+    <span class="location">
+      <i class="fa-solid fa-location-dot"></i> Vijayawada
+    </span>
+  </div>
+
+  <img src="images/airpods-pro.png" class="product-img">
+
+  <h4>AirPods Pro (2nd Gen)</h4>
+
+  <p class="price">₹24,999</p>
+<div class="rating">
+  <span class="stars" data-stars="0">☆☆☆☆☆</span>
+  <span class="rating-value">(0.0)</span>
+</div>
+
+
+  <a href="airpods-pro.html">
+    <button>View Details</button>
+  </a>
+</div>
+<div class="product-card"
+     data-name="bose quietcomfort ultra"
+     data-product-id="bosequietcomfortultra"
+     data-category="audio"
+     data-lat="16.5062"
+     data-lng="80.6480"
+     data-price="39999"
+     data-city="vijayawada"
+     
+     data-rating="0">
+
+  <div class="card-top">
+    <span class="badge">Audio</span>
+    <span class="location">
+      <i class="fa-solid fa-location-dot"></i> Vijayawada
+    </span>
+  </div>
+
+  <img src="images/bose-qc-ultra.png" class="product-img">
+
+  <h4>Bose QuietComfort Ultra</h4>
+  
+  <p class="price">₹39,999</p>
+<div class="rating">
+  <span class="stars" data-stars="0">☆☆☆☆☆</span>
+  <span class="rating-value">(0.0)</span>
+</div>
+
+
+  <a href="bose-qc-ultra.html">
+    <button>View Details</button>
+  </a>
+</div>
+<div class="product-card"
+     data-name="jbl charge 5"
+     data-product-id="jblcharge5"
+     data-category="audio"
+     data-price="17999"
+     data-lat="16.5062"
+     data-lng="80.6480"
+     data-city="vijayawada"
+     data-rating="0">
+
+  <div class="card-top">
+    <span class="badge">Audio</span>
+    <span class="location">
+      <i class="fa-solid fa-location-dot"></i> Vijayawada
+    </span>
+  </div>
+
+  <img src="images/jbl-charge-5.png" class="product-img">
+
+  <h4>JBL Charge 5</h4>
+
+  <p class="price">₹17,999</p>
+<div class="rating">
+  <span class="stars" data-stars="0">☆☆☆☆☆</span>
+  <span class="rating-value">(0.0)</span>
+</div>
+
+
+  <a href="jbl-charge-5.html">
+    <button>View Details</button>
+  </a>
+</div>
+<div class="product-card"
+     data-name="lg 7kg front load washing machine"
+     data-product-id="lg7kgfrontload"
+     data-category="appliances"
+     data-price="32999"
+     data-city="vijayawada"
+     data-lat="16.5062"
+     data-lng="80.6480"
+     data-rating="0">
+
+  <div class="card-top">
+    <span class="badge">Appliances</span>
+    <span class="location">
+      <i class="fa-solid fa-location-dot"></i> Vijayawada
+    </span>
+  </div>
+
+  <img src="images/lg-washing-machine.png" class="product-img">
+
+  <h4>LG 7kg Front Load</h4>
+
+  <p class="price">₹32,999</p>
+<div class="rating">
+  <span class="stars" data-stars="0">☆☆☆☆☆</span>
+  <span class="rating-value">(0.0)</span>
+</div>
+
+
+  <a href="lg-washing-machine.html">
+    <button>View Details</button>
+  </a>
+</div>
+<div class="product-card"
+     data-name="samsung 253l refrigerator"
+     data-product-id="samsung253lfridge"
+     data-category="appliances"
+     data-price="28999"
+     data-lat="16.5062"
+     data-lng="80.6480"
+     data-city="vijayawada"
+     data-rating="0">
+
+  <div class="card-top">
+    <span class="badge">Appliances</span>
+    <span class="location">
+      <i class="fa-solid fa-location-dot"></i> Vijayawada
+    </span>
+  </div>
+
+  <img src="images/samsung-fridge.png" class="product-img">
+
+  <h4>Samsung 253L Refrigerator</h4>
+
+  <p class="price">₹28,999</p>
+<div class="rating">
+  <span class="stars" data-stars="0">☆☆☆☆☆</span>
+  <span class="rating-value">(0.0)</span>
+</div>
+
+
+  <a href="samsung-fridge.html">
+    <button>View Details</button>
+  </a>
+</div>
+<div class="product-card"
+     data-name="bosch dishwasher 13 place"
+      data-product-id="boschdishwasher13place"
+     data-category="appliances"
+     data-price="44999"
+     data-city="vijayawada"
+     data-lat="16.5062"
+     data-lng="80.6480"
+     data-rating="0">
+
+  <div class="card-top">
+    <span class="badge">Appliances</span>
+    <span class="location">
+      <i class="fa-solid fa-location-dot"></i> Vijayawada
+    </span>
+  </div>
+
+  <img src="images/bosch-dishwasher.png" class="product-img">
+
+  <h4>Bosch 13 Place Dishwasher</h4>
+
+  <p class="price">₹44,999</p>
+<div class="rating">
+  <span class="stars" data-stars="0">☆☆☆☆☆</span>
+  <span class="rating-value">(0.0)</span>
+</div>
+
+
+  <a href="bosch-dishwasher.html">
+    <button>View Details</button>
+  </a>
+</div>
+<div class="product-card"
+     data-name="daikin 1.5 ton inverter ac"
+      data-product-id="daikin15toninverterac"
+     data-category="appliances"
+     data-price="41999"
+     data-lat="16.5062"
+     data-lng="80.6480"
+     data-city="vijayawada"
+     >
+
+  <div class="card-top">
+    <span class="badge">Appliances</span>
+    <span class="location">
+      <i class="fa-solid fa-location-dot"></i> Vijayawada
+    </span>
+  </div>
+
+  <img src="images/daikin-ac.png" class="product-img">
+
+  <h4>Daikin 1.5 Ton AC</h4>
+ 
+  <p class="price">₹41,999</p>
+<div class="rating">
+  <span class="stars" data-stars="0">☆☆☆☆☆</span>
+  <span class="rating-value">(0.0)</span>
+</div>
+
+
+  <a href="daikin-ac.html">
+    <button>View Details</button>
+  </a>
+</div>
+
+
+
+    </div>
+  </main>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="footer-left">
+    <div class="footer-logo">
+      <i class="fa-solid fa-bag-shopping"></i>
+    </div>
+    <h2>ElectroCompare</h2>
+  </div>
+
+  <div class="footer-right">
+    <p>© 2024 ElectroCompare. All rights reserved.</p>
+  </div>
+</footer>
+
+
+
+
+
+
+
+
+
+<script>
+/* ======================================================
+   GLOBAL STATE
+====================================================== */
+let userLat = null;
+let userLng = null;
+let selectedRating = 0;
+
+/* ======================================================
+   ELEMENTS
+====================================================== */
+const searchInput = document.getElementById("search-input");
+const suggestionsBox = document.getElementById("search-suggestions");
+const products = Array.from(document.querySelectorAll(".product-card"));
+const categoryFilters = document.querySelectorAll(".category-filter");
+const priceRange = document.getElementById("price-range");
+const selectedPriceText = document.getElementById("selected-price");
+const cityFilter = document.getElementById("city-filter");
+const ratingFilter = document.getElementById("rating-filter");
+const sortPrice = document.getElementById("sort-price");
+const noProducts = document.getElementById("no-products");
+const radiusRange = document.getElementById("radius-range");
+const radiusValue = document.getElementById("radius-value");
+
+/* ======================================================
+   LOGIN CHECK
+====================================================== */
+
+/* ================= NAVBAR LOGIN STATE ================= */
+
+const userBox = document.getElementById("userBox");
+const loggedUser =
+  JSON.parse(localStorage.getItem("loggedInUser")) ||
+  JSON.parse(sessionStorage.getItem("loggedInUser"));
+
+if (loggedUser && userBox) {
+  userBox.innerHTML = `
+    <span class="user-name">Hi, ${loggedUser.name}</span>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  `;
+}
+
+function logout() {
+  localStorage.removeItem("loggedInUser");
+  sessionStorage.removeItem("loggedInUser");
+  window.location.href = "login.html";
+}
+
+
+
+
+/* ======================================================
+   DISTANCE (HAVERSINE)
+====================================================== */
+function getDistanceKm(lat1, lon1, lat2, lon2) {
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(lat1 * Math.PI / 180) *
+    Math.cos(lat2 * Math.PI / 180) *
+    Math.sin(dLon / 2) ** 2;
+
+  return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
+}
+
+/* ======================================================
+   SEARCH SUGGESTIONS
+====================================================== */
+searchInput.addEventListener("input", () => {
+  const value = searchInput.value.toLowerCase().trim();
+  suggestionsBox.innerHTML = "";
+
+  if (!value) {
+    suggestionsBox.style.display = "none";
+    filterProducts();
+    return;
+  }
+
+  products
+    .filter(p =>
+      p.dataset.name.toLowerCase().includes(value) ||
+      p.dataset.category.toLowerCase().includes(value)
+    )
+    .slice(0, 6)
+    .forEach(p => {
+      const div = document.createElement("div");
+      div.innerHTML = `<strong>${p.dataset.name}</strong><small>${p.dataset.category}</small>`;
+      div.onclick = () => {
+        searchInput.value = p.dataset.name;
+        suggestionsBox.style.display = "none";
+        filterProducts();
+      };
+      suggestionsBox.appendChild(div);
+    });
+
+  suggestionsBox.style.display = "block";
+});
+
+/* ======================================================
+   MAIN FILTER FUNCTION
+====================================================== */
+function filterProducts() {
+  const search = searchInput.value.toLowerCase();
+  const maxPrice = Number(priceRange.value);
+  const city = cityFilter.value.toLowerCase();
+  const minRating = Number(ratingFilter.value);
+  const radiusKm = Number(radiusRange?.value || 10);
+
+  const activeCategories = [...categoryFilters]
+    .filter(cb => cb.checked)
+    .map(cb => cb.value);
+
+  let visibleCount = 0;
+
+  products.forEach(product => {
+    const name = product.dataset.name.toLowerCase();
+    const category = product.dataset.category.toLowerCase();
+    const price = Number(product.dataset.price);
+    const rating = Number(product.dataset.rating || 0);
+    const productCity = (product.dataset.city || "").toLowerCase();
+
+    let matchLocation = true;
+
+    if (userLat && userLng && product.dataset.lat && product.dataset.lng) {
+      const dist = getDistanceKm(
+        userLat,
+        userLng,
+        Number(product.dataset.lat),
+        Number(product.dataset.lng)
+      );
+      matchLocation = dist <= radiusKm;
+    } else if (city) {
+      matchLocation = productCity.includes(city);
+    }
+
+    const show =
+      (search === "" || name.includes(search) || category.includes(search)) &&
+      activeCategories.includes(category) &&
+      price <= maxPrice &&
+      rating >= minRating &&
+      matchLocation;
+
+    product.style.display = show ? "block" : "none";
+    if (show) visibleCount++;
+  });
+
+  noProducts.style.display = visibleCount === 0 ? "block" : "none";
+  sortProducts();
+}
+
+/* ======================================================
+   SORT
+====================================================== */
+function sortProducts() {
+  const order = sortPrice.value;
+  if (!order) return;
+
+  const grid = document.querySelector(".products-grid");
+
+  const sorted = [...products].sort((a, b) =>
+    order === "low-high"
+      ? a.dataset.price - b.dataset.price
+      : b.dataset.price - a.dataset.price
+  );
+
+  sorted.forEach(p => grid.appendChild(p));
+}
+
+/* ======================================================
+   PRICE & RADIUS UI
+====================================================== */
+function formatPrice(v) {
+  return "₹" + Number(v).toLocaleString("en-IN");
+}
+
+priceRange.addEventListener("input", () => {
+  selectedPriceText.innerText = formatPrice(priceRange.value);
+  filterProducts();
+});
+
+if (radiusRange && radiusValue) {
+  radiusValue.innerText = radiusRange.value;
+  radiusRange.addEventListener("input", () => {
+    radiusValue.innerText = radiusRange.value;
+    filterProducts();
+  });
+}
+
+selectedPriceText.innerText = formatPrice(priceRange.value);
+
+/* ======================================================
+   CLEAR FILTERS
+====================================================== */
+function clearAllFilters() {
+  searchInput.value = "";
+  cityFilter.value = "";
+  ratingFilter.value = "0";
+  sortPrice.value = "";
+  priceRange.value = priceRange.max;
+  selectedPriceText.innerText = formatPrice(priceRange.value);
+
+  if (radiusRange) {
+    radiusRange.value = 10;
+    radiusValue.innerText = "10";
+  }
+
+  categoryFilters.forEach(cb => cb.checked = true);
+  filterProducts();
+}
+
+/* ======================================================
+   GPS LOCATION
+====================================================== */
+function getUserLocation() {
+  if (!navigator.geolocation) return alert("Geolocation not supported");
+
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      userLat = pos.coords.latitude;
+      userLng = pos.coords.longitude;
+      document.getElementById("detected-location").innerText =
+        "Showing stores within selected radius";
+      filterProducts();
+    },
+    () => {
+      document.getElementById("detected-location").innerText =
+        "Location access denied";
+    }
+  );
+}
+function getStars(avg) {
+  let stars = "";
+  const rounded = Math.round(avg);
+
+  for (let i = 1; i <= 5; i++) {
+    stars += i <= rounded ? "★" : "☆";
+  }
+  return stars;
+}
+
+
+/* ======================================================
+   AVERAGE RATINGS (PRODUCT PAGE)
+====================================================== */
+function loadAverageRatings() {
+  products.forEach(card => {
+    const productId = card.dataset.productId;
+    if (!productId) return;
+
+    const ratings =
+      JSON.parse(localStorage.getItem("rating_" + productId)) || [];
+
+    let avg = 0;
+    if (ratings.length > 0) {
+      avg = ratings.reduce((a, b) => a + b, 0) / ratings.length;
+    }
+
+    avg = Number(avg.toFixed(1));
+
+    // ✅ Update dataset (important for rating filter)
+    card.dataset.rating = avg;
+
+    // ✅ Update UI correctly
+    const starsEl = card.querySelector(".stars");
+    const valueEl = card.querySelector(".rating-value");
+
+    if (starsEl && valueEl) {
+      starsEl.textContent = getStars(avg);
+      valueEl.textContent = `(${avg})`;
+    }
+  });
+}
+
+
+/* ======================================================
+   STAR RATING INPUT (DETAIL PAGE)
+====================================================== */
+document.querySelectorAll("#starRating i").forEach(star => {
+  star.addEventListener("click", () => {
+    selectedRating = Number(star.dataset.value);
+    document.querySelectorAll("#starRating i").forEach(s => {
+      s.className =
+        s.dataset.value <= selectedRating
+          ? "fa-solid fa-star active"
+          : "fa-regular fa-star";
+    });
+  });
+});
+
+function submitRating(productId) {
+  if (!selectedRating) return alert("Select rating first");
+
+  const key = "rating_" + productId;
+  const ratings = JSON.parse(localStorage.getItem(key)) || [];
+  ratings.push(selectedRating);
+  localStorage.setItem(key, JSON.stringify(ratings));
+
+  document.getElementById("ratingMessage").innerText =
+    "Thanks for rating ⭐";
+
+  selectedRating = 0;
+}
+
+/* ======================================================
+   URL CATEGORY
+====================================================== */
+const params = new URLSearchParams(window.location.search);
+const urlCategory = params.get("category");
+if (urlCategory) {
+  document.title = urlCategory.toUpperCase() + " | ElectroCompare";
+  categoryFilters.forEach(cb => cb.checked = cb.value === urlCategory);
+}
+
+/* ======================================================
+   EVENTS
+====================================================== */
+searchInput.addEventListener("keyup", filterProducts);
+categoryFilters.forEach(cb => cb.addEventListener("change", filterProducts));
+cityFilter.addEventListener("keyup", filterProducts);
+ratingFilter.addEventListener("change", filterProducts);
+sortPrice.addEventListener("change", filterProducts);
+
+/* ======================================================
+   INIT
+====================================================== */
+loadAverageRatings();
+filterProducts();
+</script>
+
+
+
+</body>
+</html>
+
+

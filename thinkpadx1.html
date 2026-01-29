@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lenovo ThinkPad X1 Carbon | ElectroCompare</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+<link rel="icon" type="image/png" href="images/logo.png">
+  <!-- SAME CSS AS IPHONE PAGE -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<header>
+  <nav class="navbar">
+
+    <!-- LOGO → HOME -->
+    <a href="index.html" class="nav-left">
+      <div class="nav-logo">
+        <i class="fa-solid fa-bag-shopping"></i>
+      </div>
+      <span class="Elec">ElectroCompare</span>
+    </a>
+
+    <!-- SEARCH -->
+    <div class="nav-center">
+      <input type="text" placeholder="Search products">
+      <button class="search-btn">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </div>
+
+    <!-- LOGIN -->
+    <div class="nav-right" id="userBox">
+  <a href="login.html" class="login-btn" id="loginBtn">Login</a>
+</div>
+
+
+  </nav>
+</header>
+
+<!-- ================= PRODUCT PAGE ================= -->
+<main class="product-page">
+
+  <!-- LEFT IMAGE PANEL (SAME CLASS AS IPHONE) -->
+  <section class="product-image-section">
+    <img src="images/lenovo-thinkpad-x1.png">
+    <div class="image-title">ThinkPad X1 Carbon</div>
+  </section>
+
+  <!-- RIGHT INFO PANEL (SAME CLASS AS IPHONE) -->
+  <section class="product-info-section">
+
+    <h1>Lenovo ThinkPad X1 Carbon</h1>
+
+   
+
+    <div class="price">₹1,49,999</div>
+
+    <!-- ================= SPECIFICATIONS ================= -->
+    <div class="info-block">
+      <h2>Specifications</h2>
+
+      <ul>
+        <li><span>Display</span><span>14″ WUXGA</span></li>
+        <li><span>Processor</span><span>Intel Core i7</span></li>
+        <li><span>RAM</span><span>32 GB</span></li>
+        <li><span>Storage</span><span>1 TB SSD</span></li>
+        <li><span>Battery</span><span>15 Hours</span></li>
+        <li><span>OS</span><span>Windows 11 Pro</span></li>
+      </ul>
+    </div>
+
+    <!-- ================= STORES ================= -->
+    <div class="info-block">
+      <h2>Available Stores</h2>
+      <div class="store">Reliance Digital ₹1,49,999</div>
+      <div class="store">Croma ₹1,52,000</div>
+      <div class="store">Amazon ₹1,48,500</div>
+    </div>
+    <div class="user-rating">
+<h3>Rate this product</h3>
+
+<div class="star-rating" id="starRating">
+  <i class="fa-regular fa-star" data-value="1"></i>
+  <i class="fa-regular fa-star" data-value="2"></i>
+  <i class="fa-regular fa-star" data-value="3"></i>
+  <i class="fa-regular fa-star" data-value="4"></i>
+  <i class="fa-regular fa-star" data-value="5"></i>
+</div>
+
+<textarea id="reviewText" placeholder="Write your review (optional)"></textarea>
+
+<button class="submit-rating-btn" onclick="submitRating('thinkpadx1')">
+  Submit Rating
+</button
+
+
+<p id="ratingMessage"></p>
+</div>
+  </section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  © 2026 ElectroCompare Vijayawada. All rights reserved.
+</footer>
+<script>
+/* ================= USER SESSION ================= */
+const user =
+  JSON.parse(localStorage.getItem("loggedInUser")) ||
+  JSON.parse(sessionStorage.getItem("loggedInUser"));
+
+const userBox = document.getElementById("userBox");
+
+if (user && userBox) {
+  userBox.innerHTML = `
+    <span class="user-name">Hi, ${user.name}</span>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  `;
+}
+
+function logout() {
+  localStorage.removeItem("loggedInUser");
+  sessionStorage.removeItem("loggedInUser");
+  window.location.href = "login.html";
+}
+
+/* ================= STAR RATING ================= */
+const stars = document.querySelectorAll("#starRating i");
+let selectedRating = 0;
+
+// ⭐ click stars
+stars.forEach(star => {
+  star.addEventListener("click", () => {
+    selectedRating = Number(star.dataset.value);
+
+    stars.forEach(s => {
+      s.classList.toggle("fa-solid", s.dataset.value <= selectedRating);
+      s.classList.toggle("fa-regular", s.dataset.value > selectedRating);
+    });
+  });
+});
+
+/* ================= SUBMIT RATING ================= */
+function submitRating(productId) {
+  if (selectedRating === 0) {
+    alert("Please select a rating");
+    return;
+  }
+
+  const key = "rating_" + productId;
+  const ratings = JSON.parse(localStorage.getItem(key)) || [];
+
+  ratings.push(selectedRating);
+  localStorage.setItem(key, JSON.stringify(ratings));
+
+  document.getElementById("ratingMessage").innerText =
+    "Thank you for rating ⭐";
+
+  // 🔄 reset stars
+  selectedRating = 0;
+  stars.forEach(s => {
+    s.classList.remove("fa-solid");
+    s.classList.add("fa-regular");
+  });
+}
+</script>
+
+
+</body>
+</html>

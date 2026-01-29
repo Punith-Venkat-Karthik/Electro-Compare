@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JBL Charge 5 | ElectroCompare</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+<body>
+
+<header>
+  <nav class="navbar">
+    <a href="index.html" class="nav-left">
+      <div class="nav-logo"><i class="fa-solid fa-bag-shopping"></i></div>
+      <span class="Elec">ElectroCompare</span>
+    </a>
+    <div class="nav-center">
+      <input type="text" placeholder="Search products">
+      <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+    <div class="nav-right" id="userBox">
+  <a href="login.html" class="login-btn" id="loginBtn">Login</a>
+</div>
+
+  </nav>
+</header>
+
+<main class="product-page">
+
+  <section class="product-image-section">
+    <img src="images/jbl-charge-5.png">
+    <div class="image-title">JBL Charge 5</div>
+  </section>
+
+  <section class="product-info-section">
+
+    <h1>JBL Charge 5</h1>
+    
+    <div class="price">₹17,999</div>
+
+    <div class="info-block">
+      <h2>Specifications</h2>
+      <ul>
+        <li><span>Type</span><span>Bluetooth Speaker</span></li>
+        <li><span>Output</span><span>40W RMS</span></li>
+        <li><span>Battery</span><span>20 Hours</span></li>
+        <li><span>Waterproof</span><span>IP67</span></li>
+        <li><span>Connectivity</span><span>Bluetooth 5.1</span></li>
+      </ul>
+    </div>
+
+    <div class="info-block">
+      <h2>Available Stores</h2>
+      <div class="store">Croma ₹17,999</div>
+      <div class="store">Reliance Digital ₹18,500</div>
+      <div class="store">Amazon ₹17,490</div>
+    </div>
+    <div class="user-rating">
+<h3>Rate this product</h3>
+
+<div class="star-rating" id="starRating">
+  <i class="fa-regular fa-star" data-value="1"></i>
+  <i class="fa-regular fa-star" data-value="2"></i>
+  <i class="fa-regular fa-star" data-value="3"></i>
+  <i class="fa-regular fa-star" data-value="4"></i>
+  <i class="fa-regular fa-star" data-value="5"></i>
+</div>
+
+<textarea id="reviewText" placeholder="Write your review (optional)"></textarea>
+
+<button class="submit-rating-btn" onclick="submitRating('jblcharge5')">
+  Submit Rating
+</button>
+
+
+<p id="ratingMessage"></p>
+</div>
+  </section>
+</main>
+
+<footer class="footer">
+  © 2026 ElectroCompare Vijayawada. All rights reserved.
+</footer>
+<script>
+/* ================= USER SESSION ================= */
+const user =
+  JSON.parse(localStorage.getItem("loggedInUser")) ||
+  JSON.parse(sessionStorage.getItem("loggedInUser"));
+
+const userBox = document.getElementById("userBox");
+
+if (user && userBox) {
+  userBox.innerHTML = `
+    <span class="user-name">Hi, ${user.name}</span>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  `;
+}
+
+function logout() {
+  localStorage.removeItem("loggedInUser");
+  sessionStorage.removeItem("loggedInUser");
+  window.location.href = "login.html";
+}
+
+/* ================= STAR RATING ================= */
+const stars = document.querySelectorAll("#starRating i");
+let selectedRating = 0;
+
+// ⭐ click stars
+stars.forEach(star => {
+  star.addEventListener("click", () => {
+    selectedRating = Number(star.dataset.value);
+
+    stars.forEach(s => {
+      s.classList.toggle("fa-solid", s.dataset.value <= selectedRating);
+      s.classList.toggle("fa-regular", s.dataset.value > selectedRating);
+    });
+  });
+});
+
+/* ================= SUBMIT RATING ================= */
+function submitRating(productId) {
+  if (selectedRating === 0) {
+    alert("Please select a rating");
+    return;
+  }
+
+  const key = "rating_" + productId;
+  const ratings = JSON.parse(localStorage.getItem(key)) || [];
+
+  ratings.push(selectedRating);
+  localStorage.setItem(key, JSON.stringify(ratings));
+
+  document.getElementById("ratingMessage").innerText =
+    "Thank you for rating ⭐";
+
+  // 🔄 reset stars
+  selectedRating = 0;
+  stars.forEach(s => {
+    s.classList.remove("fa-solid");
+    s.classList.add("fa-regular");
+  });
+}
+</script>
+
+
+</body>
+</html>

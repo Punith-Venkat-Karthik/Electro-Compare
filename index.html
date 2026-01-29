@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ElectroCompare</title>
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="icon" type="image/png" href="images/logo.png">
+
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<header>
+  <nav class="navbar">
+
+    <!-- LOGO → HOME -->
+    <a href="index.html" class="nav-left" style="text-decoration:none;">
+      <div class="nav-logo">
+        <i class="fa-solid fa-bag-shopping"></i>
+      </div>
+      <h2 class="Elec">ElectroCompare</h2>
+    </a>
+
+    <!-- SEARCH -->
+   <div class="nav-center">
+  <input
+    type="text"
+    id="home-search"
+    placeholder="Search for products, brands and more"
+  >
+  <button class="search-btn" onclick="searchFromHome()">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+</div>
+
+
+    <!-- LOGIN -->
+     <a href="login.html">
+    <div class="nav-right" id="userBox">
+  <a href="login.html" class="login-btn" id="loginBtn">Login</a>
+</div>
+
+
+     </a>
+
+  </nav>
+</header>
+
+<main>
+
+<!-- ================= HERO ================= -->
+<section class="showcase">
+  <h1 class="headline">
+    <span class="black">Compare Prices.</span><br>
+    <span class="purple">Save Money.</span>
+  </h1>
+
+  <p class="tagline">
+    Find the best deals on electronics near your location.<br>
+    We track prices across local stores so you don’t have to.
+  </p>
+</section>
+
+<!-- ================= CATEGORIES ================= -->
+<section class="categories-section">
+
+  <div class="categories-header">
+    <div>
+      <h2>Explore Categories</h2>
+      <p>Browse the most popular electronic categories</p>
+    </div>
+
+    <a href="products.html" class="view-all">
+      View All Products →
+    </a>
+  </div>
+
+  <div class="categories-grid">
+
+    <div class="categories-grid">
+
+  <a href="products.html?category=mobile" class="category-card">
+    <div class="icon-box blue">
+      <i class="fa-solid fa-mobile-screen-button"></i>
+    </div>
+    <span>Mobiles</span>
+  </a>
+
+  <a href="products.html?category=laptop" class="category-card">
+    <div class="icon-box purple">
+      <i class="fa-solid fa-laptop"></i>
+    </div>
+    <span>Laptops</span>
+  </a>
+
+  <a href="products.html?category=tv" class="category-card">
+    <div class="icon-box violet">
+      <i class="fa-solid fa-tv"></i>
+    </div>
+    <span>TVs</span>
+  </a>
+
+  <a href="products.html?category=audio" class="category-card">
+    <div class="icon-box pink">
+      <i class="fa-solid fa-headphones"></i>
+    </div>
+    <span>Audio</span>
+  </a>
+
+  <a href="products.html?category=appliances" class="category-card">
+    <div class="icon-box green">
+      <i class="fa-solid fa-washing-machine"></i>
+    </div>
+    <span>Appliances</span>
+  </a>
+
+</div>
+
+
+</section>
+
+
+<!-- ================= WHY SECTION ================= -->
+<section class="why-section">
+
+  <h2 class="why-title">Why compare with us?</h2>
+
+  <div class="why-grid">
+
+    <div class="why-card">
+      <div class="why-icon blue">
+        <i class="fa-solid fa-location-dot"></i>
+      </div>
+      <h4>Local Inventory</h4>
+      <p>
+        We check stock at stores in Vijayawada so you know exactly where to go.
+      </p>
+    </div>
+
+    <div class="why-card">
+      <div class="why-icon purple">
+        <i class="fa-solid fa-tag"></i>
+      </div>
+      <h4>Real-Time Prices</h4>
+      <p>
+        Prices are updated daily to ensure you never overpay for your tech.
+      </p>
+    </div>
+
+    <div class="why-card">
+      <div class="why-icon green">
+        <i class="fa-solid fa-sliders"></i>
+      </div>
+      <h4>Easy Comparison</h4>
+      <p>
+        Compare specs and prices side-by-side to make the best decision.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="footer-left">
+    <div class="footer-logo">
+      <i class="fa-solid fa-bag-shopping"></i>
+    </div>
+    <h2>ElectroCompare</h2>
+  </div>
+
+  <div class="footer-right">
+    <p>© 2026 ElectroCompare Vijayawada. All rights reserved.</p>
+  </div>
+</footer>
+<script>
+  function searchFromHome() {
+    const value = document.getElementById("home-search").value.trim();
+
+    if (value !== "") {
+      window.location.href = `products.html?search=${encodeURIComponent(value)}`;
+    }
+  }
+
+  // Optional: Press Enter to search
+  document.getElementById("home-search").addEventListener("keyup", function (e) {
+    if (e.key === "Enter") {
+      searchFromHome();
+    }
+  });
+  const user =
+  JSON.parse(localStorage.getItem("loggedInUser")) ||
+  JSON.parse(sessionStorage.getItem("loggedInUser"));
+
+const userBox = document.getElementById("userBox");
+
+if (user && userBox) {
+  userBox.innerHTML = `
+    <span class="user-name">Hi, ${user.name}</span>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  `;
+}
+
+function logout() {
+  localStorage.removeItem("loggedInUser");
+  sessionStorage.removeItem("loggedInUser");
+  window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>
